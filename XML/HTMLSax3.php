@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2002 The PHP Group                                |
 // +----------------------------------------------------------------------+
-// | This source file is subject toversion 3.0 of the PHP license,      |
+// | This source file is subject to version 3.0 of the PHP license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
 // | available at through the world-wide-web at                           |
 // | http://www.php.net/license/3_0.txt.                                  |
@@ -359,7 +359,7 @@ class XML_HTMLSax3_StateParser_Lt430 extends XML_HTMLSax3_StateParser {
     * @return void
     */
     function ignoreWhitespace() {
-        while ($this->position < $this->length && 
+        while ($this->position < $this->length &&
             strpos(" \n\r\t", $this->rawtext{$this->position}) !== FALSE) {
             $this->position++;
         }
@@ -528,7 +528,7 @@ class XML_HTMLSax3 {
     * <li>XML_OPTION_ENTITIES_UNPARSED: XML entities are returned as
     * seperate data handler calls in unparsed form</li>
     * <li>XML_OPTION_ENTITIES_PARSED: (PHP 4.3.0+ only) XML entities are
-    * returned as seperate data handler calls and are parsed with 
+    * returned as seperate data handler calls and are parsed with
     * PHP's html_entity_decode() function</li>
     * <li>XML_OPTION_STRIP_ESCAPES: strips out the -- -- comment markers
     * or CDATA markup inside an XML escape, if found.</li>
