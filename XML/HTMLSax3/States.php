@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2002 The PHP Group                                |
 // +----------------------------------------------------------------------+
-// | This source file is subject toversion 3.0 of the PHP license,      |
+// | This source file is subject to version 3.0 of the PHP license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
 // | available at through the world-wide-web at                           |
 // | http://www.php.net/license/3_0.txt.                                  |
@@ -132,7 +132,7 @@ class XML_HTMLSax3_OpeningTagState {
     */
     function parseAttributes($context) {
         $Attributes = array();
-    
+
         $context->ignoreWhitespace();
         $attributename = $context->scanUntilCharacters("=/> \n\r\t");
         while ($attributename != '') {
@@ -158,7 +158,7 @@ class XML_HTMLSax3_OpeningTagState {
                 $context->unscanCharacter();
             }
             $Attributes[$attributename] = $attributevalue;
-            
+
             $context->ignoreWhitespace();
             $attributename = $context->scanUntilCharacters("=/> \n\r\t");
         }
@@ -182,14 +182,14 @@ class XML_HTMLSax3_OpeningTagState {
                     $context->unscanCharacter();
                 }
                 $context->handler_object_element->
-                    {$context->handler_method_opening}($context->htmlsax, $tag, 
+                    {$context->handler_method_opening}($context->htmlsax, $tag,
                     $Attributes, TRUE);
                 $context->handler_object_element->
-                    {$context->handler_method_closing}($context->htmlsax, $tag, 
+                    {$context->handler_method_closing}($context->htmlsax, $tag,
                     TRUE);
             } else {
                 $context->handler_object_element->
-                    {$context->handler_method_opening}($context->htmlsax, $tag, 
+                    {$context->handler_method_opening}($context->htmlsax, $tag,
                     $Attributes, FALSE);
             }
         }

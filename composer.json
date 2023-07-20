@@ -1,0 +1,40 @@
+{
+  "name": "pear/xml_htmlsax3",
+  "type": "library",
+  "description": "A SAX parser for HTML and other badly formed XML documents. More info available on: https://pear.php.net/package/XML_HTMLSax3",
+  "version": "3.0.0",
+  "time": "2007-12-01 22:09:38",
+  "license": [
+    "PHP-3.01",
+    "LGPL-3.0-only"
+  ],
+  "authors": [
+    {
+      "email": "alex@veresk.ru",
+      "name": "Alexander Zhukov"
+    },
+    {
+      "email": "hfuecks@phppatterns.com",
+      "name": "Harry Fuecks"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/pear/XML_HTMLSax3/issues",
+    "source": "https://github.com/pear/XML_HTMLSax3"
+  },
+  "require": {
+    "php": ">=4.0.5"
+  },
+  "require-dev": {},
+  "suggest": {
+    "ext-pcre": "Optional"
+  },
+  "autoload": {
+    "psr-0": {
+      "XML": "./"
+    }
+  },
+  "include-path": [
+    "./"
+  ]
+}
