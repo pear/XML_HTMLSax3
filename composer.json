@@ -23,7 +23,7 @@
     "source": "https://github.com/pear/XML_HTMLSax3"
   },
   "require": {
-    "php": ">=4.0.5"
+    "php": ">=5.0.0"
   },
   "require-dev": {},
   "suggest": {
