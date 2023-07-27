@@ -27,22 +27,25 @@
   <email>hfuecks@phppatterns.com</email>
   <active>no</active>
  </lead>
- <date>2007-12-01</date>
- <time>22:09:38</time>
+ <date>2023-07-27</date>
+ <time>16:10:00</time>
  <version>
-  <release>3.0.0</release>
-  <api>3.0.0</api>
+  <release>4.0.0</release>
+  <api>4.0.0</api>
  </version>
  <stability>
   <release>stable</release>
   <api>stable</api>
  </stability>
- <license uri="http://www.php.net/license">PHP</license>
- <notes>Fixed bug #1850  HTMLtoXHTML.php does not produce XHTML [dufuz]
-Fixed bug #11607 Requesting License change, emails to listed authors bounce [cdake}
-Fixed bug #12159 not clarified license [hfuecks]
-
-This package is now dual licensed under PHP license v3.01 and LGPL 3.0</notes>
+ <license uri="https://www.php.net/license/3_01.txt">PHP 3.01</license>
+ <license uri="https://www.gnu.org/licenses/lgpl-3.0.txt">LGPL 3.0</license>
+ <notes>* Add travis [CloCkWeRX]
+* Swap tests to PHPUnit [CloCkWeRX]
+* Drop PHP4 reference syntax [CloCkWeRX]
+* Add composer.json and License file based on package.xml info [g-scalvini]
+* PSR-2 compliancy - Convert line separator from CRLF to LF [g-scalvini]
+* [BK - Drop PHP 4 support] PHP 7 compatibility - Remove PHP 4 constructors [alex-vlasov]
+* [BK - Drop PHP 4 support] Fix typos and remove dead code for PHP before v4.3 [alex-vlasov]</notes>
  <contents>
   <dir name="/">
    <file baseinstalldir="XML" md5sum="6443030f28b37aef18648f80c0ebfa50" name="docs/examples/example.html" role="doc" />
@@ -79,6 +82,25 @@ This package is now dual licensed under PHP license v3.01 and LGPL 3.0</notes>
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <date>2007-12-01</date>
+   <time>22:09:38</time>
+   <version>
+    <release>3.0.0</release>
+    <api>3.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="https://www.php.net/license/3_01.txt">PHP 3.01</license>
+   <license uri="https://www.gnu.org/licenses/lgpl-3.0.txt">LGPL 3.0</license>
+   <notes>* Fixed bug #1850  HTMLtoXHTML.php does not produce XHTML [dufuz]
+* Fixed bug #11607 Requesting License change, emails to listed authors bounce [cdake}
+* Fixed bug #12159 not clarified license [hfuecks]
+
+This package is now dual licensed under PHP license v3.01 and LGPL 3.0</notes>
+  </release>
   <release>
    <date>2004-06-02</date>
    <version>

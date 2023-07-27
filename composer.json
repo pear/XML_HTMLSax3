@@ -2,8 +2,8 @@
   "name": "pear/xml_htmlsax3",
   "type": "library",
   "description": "A SAX parser for HTML and other badly formed XML documents. More info available on: https://pear.php.net/package/XML_HTMLSax3",
-  "version": "3.0.0",
-  "time": "2007-12-01 22:09:38",
+  "version": "4.0.0",
+  "time": "2023-07-27 16:10:00",
   "license": [
     "PHP-3.01",
     "LGPL-3.0-only"
