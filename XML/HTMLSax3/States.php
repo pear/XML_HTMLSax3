@@ -37,18 +37,21 @@ define('XML_HTMLSAX3_STATE_CLOSING_TAG', 4);
 define('XML_HTMLSAX3_STATE_ESCAPE', 6);
 define('XML_HTMLSAX3_STATE_JASP', 7);
 define('XML_HTMLSAX3_STATE_PI', 8);
+
 /**
-* StartingState searches for the start of any XML tag
-* @package XML_HTMLSax3
-* @access protected
-*/
-class XML_HTMLSax3_StartingState  {
+ * StartingState searches for the start of any XML tag
+ * @package XML_HTMLSax3
+ * @access protected
+ */
+class XML_HTMLSax3_StartingState
+{
     /**
-    * @param XML_HTMLSax3_StateParser subclass
-    * @return constant XML_HTMLSAX3_STATE_TAG
-    * @access protected
-    */
-    function parse($context) {
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return int Constant XML_HTMLSAX3_STATE_TAG
+     * @access protected
+     */
+    function parse($context)
+    {
         $data = $context->scanUntilString('<');
         if ($data != '') {
             $context->handler_object_data->
@@ -58,18 +61,21 @@ class XML_HTMLSax3_StartingState  {
         return XML_HTMLSAX3_STATE_TAG;
     }
 }
+
 /**
-* Decides which state to move one from after StartingState
-* @package XML_HTMLSax3
-* @access protected
-*/
-class XML_HTMLSax3_TagState {
+ * Decides which state to move one from after StartingState
+ * @package XML_HTMLSax3
+ * @access protected
+ */
+class XML_HTMLSax3_TagState
+{
     /**
-    * @param XML_HTMLSax3_StateParser subclass
-    * @return constant the next state to move into
-    * @access protected
-    */
-    function parse($context) {
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return int The next state to move into
+     * @access protected
+     */
+    function parse($context)
+    {
         switch($context->ScanCharacter()) {
         case '/':
             return XML_HTMLSAX3_STATE_CLOSING_TAG;
@@ -89,17 +95,19 @@ class XML_HTMLSax3_TagState {
         }
     }
 }
+
 /**
-* Dealing with closing XML tags
-* @package XML_HTMLSax3
-* @access protected
-*/
-class XML_HTMLSax3_ClosingTagState {
+ * Dealing with closing XML tags
+ * @package XML_HTMLSax3
+ * @access protected
+ */
+class XML_HTMLSax3_ClosingTagState
+{
     /**
-    * @param XML_HTMLSax3_StateParser subclass
-    * @return constant XML_HTMLSAX3_STATE_START
-    * @access protected
-    */
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return int Constant XML_HTMLSAX3_STATE_START
+     * @access protected
+     */
     function parse($context) {
         $tag = $context->scanUntilCharacters('/>');
         if ($tag != '') {
@@ -116,21 +124,23 @@ class XML_HTMLSax3_ClosingTagState {
         return XML_HTMLSAX3_STATE_START;
     }
 }
+
 /**
-* Dealing with opening XML tags
-* @package XML_HTMLSax3
-* @access protected
-*/
-class XML_HTMLSax3_OpeningTagState {
+ * Dealing with opening XML tags
+ * @package XML_HTMLSax3
+ * @access protected
+ */
+class XML_HTMLSax3_OpeningTagState
+{
     /**
-    * Handles attributes
-    * @param string attribute name
-    * @param string attribute value
-    * @return void
-    * @access protected
-    * @see XML_HTMLSax3_AttributeStartState
-    */
-    function parseAttributes($context) {
+     * Handles attributes
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return array
+     * @access protected
+     * @see XML_HTMLSax3_AttributeStartState
+     */
+    function parseAttributes($context)
+    {
         $Attributes = array();
 
         $context->ignoreWhitespace();
@@ -166,11 +176,12 @@ class XML_HTMLSax3_OpeningTagState {
     }
 
     /**
-    * @param XML_HTMLSax3_StateParser subclass
-    * @return constant XML_HTMLSAX3_STATE_START
-    * @access protected
-    */
-    function parse($context) {
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return int Constant XML_HTMLSAX3_STATE_START
+     * @access protected
+     */
+    function parse($context)
+    {
         $tag = $context->scanUntilCharacters("/> \n\r\t");
         if ($tag != '') {
             $this->attrs = array();
@@ -198,17 +209,19 @@ class XML_HTMLSax3_OpeningTagState {
 }
 
 /**
-* Deals with XML escapes handling comments and CDATA correctly
-* @package XML_HTMLSax3
-* @access protected
-*/
-class XML_HTMLSax3_EscapeState {
+ * Deals with XML escapes handling comments and CDATA correctly
+ * @package XML_HTMLSax3
+ * @access protected
+ */
+class XML_HTMLSax3_EscapeState
+{
     /**
-    * @param XML_HTMLSax3_StateParser subclass
-    * @return constant XML_HTMLSAX3_STATE_START
-    * @access protected
-    */
-    function parse($context) {
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return int Constant XML_HTMLSAX3_STATE_START
+     * @access protected
+     */
+    function parse($context)
+    {
         $char = $context->ScanCharacter();
         if ($char == '-') {
             $char = $context->ScanCharacter();
@@ -239,18 +252,21 @@ class XML_HTMLSax3_EscapeState {
         return XML_HTMLSAX3_STATE_START;
     }
 }
+
 /**
-* Deals with JASP/ASP markup
-* @package XML_HTMLSax3
-* @access protected
+ * Deals with JASP/ASP markup
+ * @package XML_HTMLSax3
+ * @access protected
 */
-class XML_HTMLSax3_JaspState {
+class XML_HTMLSax3_JaspState
+{
     /**
-    * @param XML_HTMLSax3_StateParser subclass
-    * @return constant XML_HTMLSAX3_STATE_START
-    * @access protected
-    */
-    function parse($context) {
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return int Constant XML_HTMLSAX3_STATE_START
+     * @access protected
+     */
+    function parse($context)
+    {
         $text = $context->scanUntilString('%>');
         if ($text != '') {
             $context->handler_object_jasp->
@@ -261,18 +277,21 @@ class XML_HTMLSax3_JaspState {
         return XML_HTMLSAX3_STATE_START;
     }
 }
+
 /**
-* Deals with XML processing instructions
-* @package XML_HTMLSax3
-* @access protected
-*/
-class XML_HTMLSax3_PiState {
+ * Deals with XML processing instructions
+ * @package XML_HTMLSax3
+ * @access protected
+ */
+class XML_HTMLSax3_PiState
+{
     /**
-    * @param XML_HTMLSax3_StateParser subclass
-    * @return constant XML_HTMLSAX3_STATE_START
-    * @access protected
-    */
-    function parse($context) {
+     * @param XML_HTMLSax3_StateParser $context Subclass of XML_HTMLSax3_StateParser
+     * @return int Constant XML_HTMLSAX3_STATE_START
+     * @access protected
+     */
+    function parse($context)
+    {
         $target = $context->scanUntilCharacters(" \n\r\t");
         $data = $context->scanUntilString('?>');
         if ($data != '') {
