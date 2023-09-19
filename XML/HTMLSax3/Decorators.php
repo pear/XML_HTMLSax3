@@ -27,12 +27,12 @@
  * @version $Id: Decorators.php,v 1.2 2007/10/29 21:41:35 hfuecks Exp $
  * @see XML_HTMLSax3::set_option()
  */
+
 /**
- * Trims the contents of element data from whitespace at start and end
+ * Base decorator class to be extended
  * @package XML_HTMLSax3
- * @access protected
  */
-class XML_HTMLSax3_Trim
+abstract class XML_HTMLSax3_Decorator
 {
     /**
      * Original handler object
@@ -48,17 +48,24 @@ class XML_HTMLSax3_Trim
     var $orig_method;
 
     /**
-     * Constructs XML_HTMLSax3_Trim
+     * XML_HTMLSax3_Decorator constructor
      * @param object $orig_obj Handler object being decorated
      * @param string $orig_method Original handler method
-     * @access protected
-    */
+     */
     public function __construct($orig_obj, $orig_method)
     {
         $this->orig_obj = $orig_obj;
         $this->orig_method = $orig_method;
     }
+}
 
+/**
+ * Trims the contents of element data from whitespace at start and end
+ * @package XML_HTMLSax3
+ * @access protected
+ */
+class XML_HTMLSax3_Trim extends XML_HTMLSax3_Decorator
+{
     /**
      * Trims the data
      * @param XML_HTMLSax3 $parser
@@ -80,14 +87,8 @@ class XML_HTMLSax3_Trim
  * @package XML_HTMLSax3
  * @access protected
  */
-class XML_HTMLSax3_CaseFolding
+class XML_HTMLSax3_CaseFolding extends XML_HTMLSax3_Decorator
 {
-    /**
-     * Original handler object
-     * @var object
-     * @access private
-     */
-    var $orig_obj;
     /**
      * Original open handler method
      * @var string
@@ -102,11 +103,10 @@ class XML_HTMLSax3_CaseFolding
     var $orig_close_method;
 
     /**
-     * Constructs XML_HTMLSax3_CaseFolding
+     * XML_HTMLSax3_CaseFolding constructor
      * @param object $orig_obj Handler object being decorated
      * @param string $orig_open_method Original open handler method
      * @param string $orig_close_method Original close handler method
-     * @access protected
      */
     public function __construct($orig_obj, $orig_open_method, $orig_close_method)
     {
@@ -147,37 +147,12 @@ class XML_HTMLSax3_CaseFolding
  * @package XML_HTMLSax3
  * @access protected
  */
-class XML_HTMLSax3_Linefeed
+class XML_HTMLSax3_Linefeed extends XML_HTMLSax3_Decorator
 {
-    /**
-     * Original handler object
-     * @var object
-     * @access private
-     */
-    var $orig_obj;
-    /**
-     * Original handler method
-     * @var string
-     * @access private
-     */
-    var $orig_method;
-
-    /**
-     * Constructs XML_HTMLSax3_LineFeed
-     * @param object $orig_obj Handler object being decorated
-     * @param string $orig_method Original handler method
-     * @access protected
-     */
-    public function __construct($orig_obj, $orig_method)
-    {
-        $this->orig_obj = $orig_obj;
-        $this->orig_method = $orig_method;
-    }
-
     /**
      * Breaks the data up by linefeeds
      * @param XML_HTMLSax3 $parser
-     * @param string $data Element data
+     * @param string $data element data
      * @access protected
      */
     function breakData($parser, $data)
@@ -195,33 +170,8 @@ class XML_HTMLSax3_Linefeed
  * @package XML_HTMLSax3
  * @access protected
  */
-class XML_HTMLSax3_Tab
+class XML_HTMLSax3_Tab extends XML_HTMLSax3_Decorator
 {
-    /**
-     * Original handler object
-     * @var object
-     * @access private
-     */
-    var $orig_obj;
-    /**
-     * Original handler method
-     * @var string
-     * @access private
-     */
-    var $orig_method;
-
-    /**
-     * Constructs XML_HTMLSax3_Tab
-     * @param object $orig_obj Handler object being decorated
-     * @param string $orig_method Original handler method
-     * @access protected
-     */
-    public function __construct($orig_obj, $orig_method)
-    {
-        $this->orig_obj = $orig_obj;
-        $this->orig_method = $orig_method;
-    }
-
     /**
      * Breaks the data up by linefeeds
      * @param XML_HTMLSax3 $parser
@@ -230,7 +180,7 @@ class XML_HTMLSax3_Tab
      */
     function breakData($parser, $data)
     {
-        $data = explode("\t",$data);
+        $data = explode("\t", $data);
         foreach ( $data as $chunk ) {
             $this->orig_obj->{$this->orig_method}($this, $chunk);
         }
@@ -243,33 +193,8 @@ class XML_HTMLSax3_Tab
  * @package XML_HTMLSax3
  * @access protected
  */
-class XML_HTMLSax3_Entities_Parsed
+class XML_HTMLSax3_Entities_Parsed extends XML_HTMLSax3_Decorator
 {
-    /**
-     * Original handler object
-     * @var object
-     * @access private
-     */
-    var $orig_obj;
-    /**
-     * Original handler method
-     * @var string
-     * @access private
-     */
-    var $orig_method;
-
-    /**
-     * Constructs XML_HTMLSax3_Entities_Parsed
-     * @param object $orig_obj Handler object being decorated
-     * @param string $orig_method Original handler method
-     * @access protected
-     */
-    public function __construct($orig_obj, $orig_method)
-    {
-        $this->orig_obj = $orig_obj;
-        $this->orig_method = $orig_method;
-    }
-
     /**
      * Breaks the data up by XML entities
      * @param XML_HTMLSax3 $parser
@@ -278,9 +203,9 @@ class XML_HTMLSax3_Entities_Parsed
      */
     function breakData($parser, $data)
     {
-        $data = preg_split('/(&.+?;)/',$data,-1,PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $data = preg_split('/(&.+?;)/', $data, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         foreach ( $data as $chunk ) {
-            $chunk = html_entity_decode($chunk,ENT_NOQUOTES);
+            $chunk = html_entity_decode($chunk, ENT_NOQUOTES);
             $this->orig_obj->{$this->orig_method}($this, $chunk);
         }
     }
@@ -292,33 +217,8 @@ class XML_HTMLSax3_Entities_Parsed
  * @package XML_HTMLSax3
  * @access protected
  */
-class XML_HTMLSax3_Entities_Unparsed
+class XML_HTMLSax3_Entities_Unparsed extends XML_HTMLSax3_Decorator
 {
-    /**
-     * Original handler object
-     * @var object
-     * @access private
-     */
-    var $orig_obj;
-    /**
-     * Original handler method
-     * @var string
-     * @access private
-     */
-    var $orig_method;
-
-    /**
-     * Constructs XML_HTMLSax3_Entities_Unparsed
-     * @param object $orig_obj Handler object being decorated
-     * @param string $orig_method Original handler method
-     * @access protected
-     */
-    public function __construct($orig_obj, $orig_method)
-    {
-        $this->orig_obj = $orig_obj;
-        $this->orig_method = $orig_method;
-    }
-
     /**
      * Breaks the data up by XML entities
      * @param XML_HTMLSax3 $parser
@@ -327,7 +227,7 @@ class XML_HTMLSax3_Entities_Unparsed
      */
     function breakData($parser, $data)
     {
-        $data = preg_split('/(&.+?;)/',$data,-1,PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $data = preg_split('/(&.+?;)/', $data, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         foreach ( $data as $chunk ) {
             $this->orig_obj->{$this->orig_method}($this, $chunk);
         }
@@ -340,33 +240,8 @@ class XML_HTMLSax3_Entities_Unparsed
  * @package XML_HTMLSax3
  * @access protected
  */
-class XML_HTMLSax3_Escape_Stripper
+class XML_HTMLSax3_Escape_Stripper extends XML_HTMLSax3_Decorator
 {
-    /**
-     * Original handler object
-     * @var object
-     * @access private
-     */
-    var $orig_obj;
-    /**
-     * Original handler method
-     * @var string
-     * @access private
-     */
-    var $orig_method;
-
-    /**
-     * Constructs XML_HTMLSax3_Entities_Unparsed
-     * @param object $orig_obj Handler object being decorated
-     * @param string $orig_method Original handler method
-     * @access protected
-     */
-    public function __construct($orig_obj, $orig_method)
-    {
-        $this->orig_obj = $orig_obj;
-        $this->orig_method = $orig_method;
-    }
-
     /**
      * Breaks the data up by XML entities
      * @param XML_HTMLSax3 $parser
