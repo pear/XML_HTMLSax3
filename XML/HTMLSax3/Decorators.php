@@ -105,12 +105,13 @@ class XML_HTMLSax3_CaseFolding extends XML_HTMLSax3_Decorator
     /**
      * XML_HTMLSax3_CaseFolding constructor
      * @param object $orig_obj Handler object being decorated
+     * @param string $orig_method Original handler method
      * @param string $orig_open_method Original open handler method
      * @param string $orig_close_method Original close handler method
      */
-    public function __construct($orig_obj, $orig_open_method, $orig_close_method)
+    public function __construct($orig_obj, $orig_method, $orig_open_method, $orig_close_method)
     {
-        $this->orig_obj = $orig_obj;
+        parent::__construct($orig_obj, $orig_method);
         $this->orig_open_method = $orig_open_method;
         $this->orig_close_method = $orig_close_method;
     }
