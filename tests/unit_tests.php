@@ -6,11 +6,18 @@
 * @package XML
 * @version $Id: unit_tests.php,v 1.3 2004/06/02 14:23:48 hfuecks Exp $
 */
-require_once 'PHPUnit/Autoload.php';
 
+// Include PHPUnit using composer
+if (is_readable('vendor/autoload.php')) {
+    require_once 'vendor/autoload.php';
+} else {
+    require_once 'PHPUnit/Autoload.php';
+}
 require_once 'XML/HTMLSax3.php';
 require_once 'XML/HTMLSax3/States.php';
 require_once 'XML/HTMLSax3/Decorators.php';
+
+use PHPUnit\Framework\TestCase;
 
 /**
 * @package XML
@@ -25,10 +32,12 @@ class ListenerInterface {
     function escapeHandler($parser, $data) { }
     function jaspHandler($parser, $data) { }
 }
-class ParserTestCase extends PHPUnit_Framework_TestCase {
+
+class ParserTestCase extends TestCase
+{
     var $parser;
     var $listener;
-    
+
     function setUp() {
         $this->listener = $this->getMock('ListenerInterface', null, array($this));
         $this->parser = new XML_HTMLSax3();
