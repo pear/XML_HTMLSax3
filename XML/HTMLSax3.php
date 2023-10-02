@@ -256,6 +256,7 @@ class XML_HTMLSax3_StateParser
         if ($this->parser_options['XML_OPTION_CASE_FOLDING']==1) {
             $open_decor = new XML_HTMLSax3_CaseFolding(
                 $this->handler_object_element,
+                '',
                 $this->handler_method_opening,
                 $this->handler_method_closing);
             $this->handler_object_element = $open_decor;
