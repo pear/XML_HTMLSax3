@@ -65,7 +65,7 @@ This package is now dual licensed under PHP license v3.01 and LGPL 3.0</notes>
  <dependencies>
   <required>
    <php>
-    <min>5.3</min>
+    <min>5.3.3</min>
    </php>
    <pearinstaller>
     <min>1.4.0b1</min>
