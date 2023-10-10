@@ -6,15 +6,19 @@
 require_once('XML/HTMLSax3.php');
 
 class MyHandler {
+
+    public function __construct() {
+    }
+
     function escape($parser,$data) {
         echo('<pre>'.$data."\n\n\n</pre>");
     }
 }
 
-$h = & new MyHandler();
+$h = new MyHandler();
 
 // Instantiate the parser
-$parser=& new XML_HTMLSax3();
+$parser = new XML_HTMLSax3();
 
 $parser->set_object($h);
 $parser->set_escape_handler('escape');

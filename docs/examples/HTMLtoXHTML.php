@@ -11,7 +11,7 @@ class HTMLtoXHTMLHandler
     var $inTitle;
     var $pCounter;
 
-    function HTMLtoXHTMLHandler()
+    function __construct()
     {
         $this->xhtml = '';
         $this->inTitle = false;
@@ -113,10 +113,10 @@ class HTMLtoXHTMLHandler
 $doc = file_get_contents('example.html');
 
 // Instantiate the handler
-$handler =& new HTMLtoXHTMLHandler();
+$handler = new HTMLtoXHTMLHandler();
 
 // Instantiate the parser
-$parser =& new XML_HTMLSax3();
+$parser = new XML_HTMLSax3();
 
 // Register the handler with the parser
 $parser->set_object($handler);

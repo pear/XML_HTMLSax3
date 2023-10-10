@@ -10,6 +10,9 @@ class SimpleTemplate {
 
     var $output = '';
 
+    public function __construct() {
+    }
+
     function setVar($name,$value) {
         $this->vars[$name] = $value;
     }
@@ -69,7 +72,7 @@ class SimpleTemplate {
 }
 
 
-$tpl=new SimpleTemplate();
+$tpl = new SimpleTemplate();
 
 $tpl->setVar('title','HTMLSax as a Template Parser');
 
@@ -97,7 +100,7 @@ EOD;
 $tpl->setVar('para2',$para2);
 
 // Instantiate the parser
-$parser=& new XML_HTMLSax3();
+$parser = new XML_HTMLSax3();
 
 // Register the handler with the parser
 $parser->set_object($tpl);
@@ -116,4 +119,3 @@ $parser->set_jasp_handler('jasp');
 $parser->parse(file_get_contents('simpletemplate.tpl'));
 
 $tpl->display();
-?>

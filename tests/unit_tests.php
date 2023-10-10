@@ -24,7 +24,7 @@ use PHPUnit\Framework\TestCase;
 * @version $Id: xml_htmlsax_test.php,v 1.3 2004/05/28 11:53:48 hfuecks Exp $
 */
 class ListenerInterface {
-    function ListenerInterface() { }
+    function __construct() { }
     function startHandler($parser, $name, $attrs) { }
     function endHandler($parser, $name) { }
     function dataHandler($parser, $data) { }

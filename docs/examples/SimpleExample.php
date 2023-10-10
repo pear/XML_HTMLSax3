@@ -7,7 +7,7 @@ require_once('XML/HTMLSax3.php');
 
 
 class MyHandler {
-    function MyHandler(){}
+    public function __construct() {}
     function openHandler(& $parser,$name,$attrs) {
         echo ( 'Open Tag Handler: '.$name.'<br />' );
         echo ( 'Attrs:<pre>' );
@@ -48,7 +48,7 @@ document.write('<b>Hello World!</b>');
 <?php
 echo ( '<b>This is a processing instruction</b>' );
 ?>
-<a href="http://www.php.net">PHP</a>
+<a href="https://www.php.net/">PHP</a>
 <%
 document.write('<i>Hello World!</i>');
 %>
@@ -57,10 +57,10 @@ document.write('<i>Hello World!</i>');
 EOD;
 
 // Instantiate the handler
-$handler=new MyHandler();
+$handler = new MyHandler();
 
 // Instantiate the parser
-$parser=& new XML_HTMLSax3();
+$parser = new XML_HTMLSax3();
 
 // Register the handler with the parser
 $parser->set_object($handler);
@@ -77,4 +77,3 @@ $parser->set_jasp_handler('jaspHandler');
 
 // Parse the document
 $parser->parse($doc);
-?>
