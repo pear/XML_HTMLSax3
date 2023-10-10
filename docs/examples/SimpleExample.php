@@ -6,28 +6,37 @@
 require_once('XML/HTMLSax3.php');
 
 
-class MyHandler {
-    public function __construct() {}
-    function openHandler(& $parser,$name,$attrs) {
-        echo ( 'Open Tag Handler: '.$name.'<br />' );
-        echo ( 'Attrs:<pre>' );
+class MyHandler
+{
+    public function __construct()
+    {
+    }
+    function openHandler(& $parser, $name, $attrs)
+    {
+        echo('Open Tag Handler: '.$name.'<br />');
+        echo('Attrs:<pre>');
         print_r($attrs);
-        echo ( '</pre>' );
+        echo('</pre>');
     }
-    function closeHandler(& $parser,$name) {
-        echo ( 'Close Tag Handler: '.$name.'<br />' );
+    function closeHandler(& $parser, $name)
+    {
+        echo('Close Tag Handler: '.$name.'<br />');
     }
-    function dataHandler(& $parser,$data) {
-        echo ( 'Data Handler: '.$data.'<br />' );
+    function dataHandler(& $parser, $data)
+    {
+        echo('Data Handler: '.$data.'<br />');
     }
-    function escapeHandler(& $parser,$data) {
-        echo ( 'Escape Handler: '.$data.'<br />' );
+    function escapeHandler(& $parser, $data)
+    {
+        echo('Escape Handler: '.$data.'<br />');
     }
-    function piHandler(& $parser,$target,$data) {
-        echo ( 'PI Handler: '.$target.' - '.$data.'<br />' );
+    function piHandler(& $parser, $target, $data)
+    {
+        echo('PI Handler: '.$target.' - '.$data.'<br />');
     }
-    function jaspHandler(& $parser,$data) {
-        echo ( 'Jasp Handler: '.$data.'<br />' );
+    function jaspHandler(& $parser, $data)
+    {
+        echo('Jasp Handler: '.$data.'<br />');
     }
 }
 
@@ -69,7 +78,7 @@ $parser->set_object($handler);
 $parser->set_option('XML_OPTION_TRIM_DATA_NODES');
 
 // Set the handlers
-$parser->set_element_handler('openHandler','closeHandler');
+$parser->set_element_handler('openHandler', 'closeHandler');
 $parser->set_data_handler('dataHandler');
 $parser->set_escape_handler('escapeHandler');
 $parser->set_pi_handler('piHandler');

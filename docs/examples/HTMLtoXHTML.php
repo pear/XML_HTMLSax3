@@ -11,7 +11,7 @@ class HTMLtoXHTMLHandler
     var $inTitle;
     var $pCounter;
 
-    function __construct()
+    public function __construct()
     {
         $this->xhtml = '';
         $this->inTitle = false;
@@ -19,7 +19,7 @@ class HTMLtoXHTMLHandler
     }
 
     // Handles the writing of attributes - called from $this->openHandler()
-    function writeAttrs ($attrs)
+    function writeAttrs($attrs)
     {
         if (is_array($attrs)) {
             foreach ($attrs as $name => $value) {
@@ -27,7 +27,7 @@ class HTMLtoXHTMLHandler
                 if ($name == 'checked') {
                     $this->xhtml.=' checked="checked"';
                 // Watch for 'selected'
-                } else if ($name == 'selected') {
+                } elseif ($name == 'selected') {
                     $this->xhtml.=' selected="selected"';
                 } else {
                     $this->xhtml.=' '.$name.'="'.$value.'"';
@@ -103,7 +103,7 @@ class HTMLtoXHTMLHandler
     }
 
     // Return the XHTML document
-    function getXHTML ()
+    function getXHTML()
     {
         return $this->xhtml;
     }
@@ -122,7 +122,7 @@ $parser = new XML_HTMLSax3();
 $parser->set_object($handler);
 
 // Set the handlers
-$parser->set_element_handler('openHandler','closeHandler');
+$parser->set_element_handler('openHandler', 'closeHandler');
 $parser->set_data_handler('dataHandler');
 $parser->set_escape_handler('escapeHandler');
 

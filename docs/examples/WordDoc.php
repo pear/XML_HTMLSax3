@@ -5,12 +5,14 @@
  */
 require_once('XML/HTMLSax3.php');
 
-class MyHandler {
-
-    public function __construct() {
+class MyHandler
+{
+    public function __construct()
+    {
     }
 
-    function escape($parser,$data) {
+    function escape($parser, $data)
+    {
         echo('<pre>'.$data."\n\n\n</pre>");
     }
 }
@@ -23,7 +25,7 @@ $parser = new XML_HTMLSax3();
 $parser->set_object($h);
 $parser->set_escape_handler('escape');
 
-if ( isset($_GET['strip_escapes']) ) {
+if (isset($_GET['strip_escapes'])) {
     $parser->set_option('XML_OPTION_STRIP_ESCAPES');
 }
 ?>
