@@ -23,14 +23,29 @@ use PHPUnit\Framework\TestCase;
 * @package XML
 * @version $Id: xml_htmlsax_test.php,v 1.3 2004/05/28 11:53:48 hfuecks Exp $
 */
-class ListenerInterface {
-    function ListenerInterface() { }
-    function startHandler($parser, $name, $attrs) { }
-    function endHandler($parser, $name) { }
-    function dataHandler($parser, $data) { }
-    function piHandler($parser, $target, $data) { }
-    function escapeHandler($parser, $data) { }
-    function jaspHandler($parser, $data) { }
+class ListenerInterface
+{
+    public function __construct()
+    {
+    }
+    function startHandler($parser, $name, $attrs)
+    {
+    }
+    function endHandler($parser, $name)
+    {
+    }
+    function dataHandler($parser, $data)
+    {
+    }
+    function piHandler($parser, $target, $data)
+    {
+    }
+    function escapeHandler($parser, $data)
+    {
+    }
+    function jaspHandler($parser, $data)
+    {
+    }
 }
 
 class ParserTestCase extends TestCase
@@ -38,11 +53,12 @@ class ParserTestCase extends TestCase
     var $parser;
     var $listener;
 
-    function setUp() {
+    function setUp()
+    {
         $this->listener = $this->getMock('ListenerInterface', null, array($this));
         $this->parser = new XML_HTMLSax3();
         $this->parser->set_object($this->listener);
-        $this->parser->set_element_handler('startHandler','endHandler');
+        $this->parser->set_element_handler('startHandler', 'endHandler');
         $this->parser->set_data_handler('dataHandler');
         $this->parser->set_escape_handler('escapeHandler');
         $this->parser->set_pi_handler('piHandler');
