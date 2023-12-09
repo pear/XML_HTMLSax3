@@ -38,7 +38,7 @@
   <api>stable</api>
  </stability>
  <license uri="https://www.php.net/license/3_01.txt">PHP 3.01</license>
- <license uri="https://www.gnu.org/licenses/lgpl-3.0.txt">LGPL 3.0</license>
+ <!--license uri="https://www.gnu.org/licenses/lgpl-3.0.txt">LGPL 3.0</license-->
  <notes>* Add travis [CloCkWeRX]
 * Swap tests to PHPUnit [CloCkWeRX]
 * Drop PHP4 reference syntax [CloCkWeRX]
@@ -48,21 +48,21 @@
 * [BK - Drop PHP 4 support] Fix typos and remove dead code for PHP before v4.3 [alex-vlasov]</notes>
  <contents>
   <dir name="/">
-   <file baseinstalldir="XML" md5sum="6443030f28b37aef18648f80c0ebfa50" name="docs/examples/example.html" role="doc" />
-   <file baseinstalldir="XML" md5sum="927697c9a4090472c9b52acf5fa2f297" name="docs/examples/ExpatvsHtmlSax.php" role="doc" />
-   <file baseinstalldir="XML" md5sum="6f5bf3660dee8a549e0163ed371ee3f8" name="docs/examples/HTMLtoXHTML.php" role="doc" />
-   <file baseinstalldir="XML" md5sum="069662117a0fbea381abad112d47b150" name="docs/examples/SimpleExample.php" role="doc" />
-   <file baseinstalldir="XML" md5sum="010de9495fe6793a9c95e9dc7170b493" name="docs/examples/SimpleTemplate.php" role="doc" />
-   <file baseinstalldir="XML" md5sum="3d230b9d9301cc49bcab6314155d49c1" name="docs/examples/simpletemplate.tpl" role="doc" />
-   <file baseinstalldir="XML" md5sum="0ff3c67cf9e09dd8a0088aa14e633449" name="docs/examples/worddoc.htm" role="doc" />
-   <file baseinstalldir="XML" md5sum="fbf07a95c981cc40823dec345af99c3d" name="docs/examples/WordDoc.php" role="doc" />
-   <file baseinstalldir="XML" md5sum="48ff7cce1acdf3725a4f3c43f72ae491" name="docs/Readme" role="doc" />
-   <file baseinstalldir="XML" md5sum="ee68fca44daf5ea4ab0d1e89898dbac5" name="HTMLSax3/Decorators.php" role="php" />
-   <file baseinstalldir="XML" md5sum="53bc57b65555dbb2f11723c9cfef35c0" name="HTMLSax3/States.php" role="php" />
-   <file baseinstalldir="XML" md5sum="58a613410f75656db17d6d0ea27e2534" name="tests/index.php" role="test" />
-   <file baseinstalldir="XML" md5sum="3d7e5c0266f5c807e9b21a194630f17b" name="tests/unit_tests.php" role="test" />
-   <file baseinstalldir="XML" md5sum="4b67baeaf8d3032ffd55affef4c8a7ff" name="tests/xml_htmlsax_test.php" role="test" />
-   <file baseinstalldir="XML" md5sum="909dd989c6c6ece13efe37c028c4fefd" name="HTMLSax3.php" role="php" />
+  <dir name="XML">
+   <file baseinstalldir="XML" name="HTMLSax3.php" role="php" />
+   <file baseinstalldir="XML" name="HTMLSax3/Decorators.php" role="php" />
+   <file baseinstalldir="XML" name="HTMLSax3/States.php" role="php" />
+  </dir>
+   <file baseinstalldir="XML" name="docs/examples/example.html" role="doc" />
+   <file baseinstalldir="XML" name="docs/examples/ExpatvsHtmlSax.php" role="doc" />
+   <file baseinstalldir="XML" name="docs/examples/HTMLtoXHTML.php" role="doc" />
+   <file baseinstalldir="XML" name="docs/examples/SimpleExample.php" role="doc" />
+   <file baseinstalldir="XML" name="docs/examples/SimpleTemplate.php" role="doc" />
+   <file baseinstalldir="XML" name="docs/examples/simpletemplate.tpl" role="doc" />
+   <file baseinstalldir="XML" name="docs/examples/worddoc.htm" role="doc" />
+   <file baseinstalldir="XML" name="docs/examples/WordDoc.php" role="doc" />
+   <file baseinstalldir="XML" name="docs/Readme" role="doc" />
+   <file baseinstalldir="XML" name="tests/unit_tests.php" role="test" />
   </dir>
  </contents>
  <dependencies>
